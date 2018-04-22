@@ -6,8 +6,11 @@ import Search  from './FormSearch';
 import Galary  from './Galary';
 import './App.css';
 import ShowData from './Withoutclassj';
+import AppDispatcher from './AppDispatcher';
 
-
+const dummyNumber = ['202-555-0177', '2025550111', '202-555-0116', 
+                    ' 201-555-0125', '201-555-0176', '201-555-0101',
+                    ' 101-555-0125', '101-555-0176', '101-555-0101']
 const PropName  = {
   page:"https://www.google.co.in",
   pages:"sometest"
@@ -28,20 +31,28 @@ static propsType = {
   super(props)
   this.state = {page  :"chaitaya",
                children: 'veeravalli',
-               myname: 'chaitanya'
+               myname: 'chaitanya',
+               searchNumber: ['search numer']
               };
   }
-  handelFormSubmit(username) {
-   // console.log('username' + username)
+  handelFormSubmit(searchnumber) {
+    const firstDigit = searchnumber.match(/\ddd/);
+
+    const searchNumber =  dummyNumber.filter((number) => 
+      number.indexOf(searchnumber) > -1 && 
+      number.indexOf(searchnumber) < 3  ) || "no number found";
+
+    this.setState({
+      searchNumber:(searchNumber.length >= 1) ? searchNumber : ['no number found']
+    })
+
+  
   }
   render() {
     return (
       <div className="App hi">
-        <Test name="veeravalli" val="vass"/>
-        <Link {...this.props} />
         <Search onFormSubmit={this.handelFormSubmit.bind(this)}/>
-        <Galary  {...this.props} ongetIndex={this.handelFormSubmit.bind(this)} />
-        {<ShowData />}
+        {this.state.searchNumber.map((shownumber) => <div>{shownumber}</div>)}
       </div>
     );
   }

@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
-
+import PropTypes from 'prop-types';
 class GalaryModal extends Component {
-
-    static defaultprops = {
-        img: "https://pbs.twimg.com/profile_images/933999291223351296/qI7etZ4E_400x400.jpg",
-        alt: "google",
-        imagename: 'asdfghj'
-       
-        }
 
   constructor(props) {
     super(props)
@@ -50,12 +43,5 @@ class GalaryModal extends Component {
   }
 
 }
-GalaryModal.defaultProps = {
-    img: "https://pbs.twimg.com/profile_images/933999291223351296/qI7etZ4E_400x400.jpg",
-    alt: "google",
-    imagename: 'asdfghj'
-       
-  }
-
 
 export default GalaryModal;
